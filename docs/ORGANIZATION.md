@@ -32,6 +32,10 @@ The working notebook is derived from the original, with these changes:
 
 The base learners, hyperparameter search, preprocessing-before-split research design, in-sample stacking and distinct CSV/server allocation mappings remain recognizable from the original. Their methodological shortcomings are documented in `KNOWN_LIMITATIONS.md`; packaging does not establish an unbiased model.
 
-New supporting files include the README, data/output folder instructions, dependency files, `.gitignore`, `.gitattributes`, local notebook runner, synthetic smoke test, function regression tests and verification record. No license was chosen without the authors' decision. No data, fitted model, credential or generated notebook is included in the commit.
+New supporting files include the README, data/output folder instructions, dependency files, `.gitignore`, `.gitattributes`, local notebook runner, synthetic smoke test, function regression tests and verification record. No license was chosen without the authors' decision. The initial organization commit included no data, fitted model, credential or generated notebook.
 
 The PDF was checked for remaining student ID text and visually reviewed after redaction. Pages 2-8 render pixel-identically to the original. Author attribution and research text remain.
+
+## Later reference-data addition
+
+At the repository owner's request, a fixed public copy of `train.csv` and example `test.csv` was subsequently added with source commits, SHA-256 hashes, field descriptions and a new preprocessing record. These files were not in the original upload and are not asserted to be the exact historical team inputs. Other local datasets and generated outputs remain excluded. See `data/README.md` and `docs/DATA_RECOMPUTATION.md`.

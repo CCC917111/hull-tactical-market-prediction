@@ -4,3 +4,7 @@
 *.ipynb text eol=lf
 *.pdf binary
 *.png binary
+
+# Preserve the exact source CSV bytes across platforms for provenance hashes.
+data/train.csv -text
+data/test.csv -text

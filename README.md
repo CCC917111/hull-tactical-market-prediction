@@ -10,6 +10,12 @@ This repository packages the original submission with a portable working noteboo
 
 In this team course project, I was responsible for the XGBoost and LightGBM modeling components.
 
+## Input data
+
+The repository includes a fixed public copy of the Kaggle competition's `train.csv` and example `test.csv`, sourced from [warun7/HullTacticalMarketPrediction](https://github.com/warun7/HullTacticalMarketPrediction/tree/dec25acbb7172b0b74efc1adf8a7c0425c36cfc7). The training file was committed there on 26 November 2025. It contains **9,021 rows and 98 columns**; the example test file contains **10 rows and 99 columns**.
+
+Each row represents a trading day, with 94 financial indicators covering market dynamics, macroeconomics, interest rates, valuation, sentiment, volatility and binary signals. The notebook's default target is `forward_returns`, the next-day S&P 500 return. This reference copy was obtained during repository preparation and has not been confirmed as the team's exact historical input. See [data provenance and field descriptions](data/README.md) and [the new preprocessing record](docs/DATA_RECOMPUTATION.md).
+
 ## Repository layout
 
 ```text
@@ -28,7 +34,13 @@ docs/
   KNOWN_LIMITATIONS.md              Modeling and validation caveats
   ORGANIZATION.md                   Archive inventory and change record
   VALIDATION.md                    Recorded verification and its boundaries
-data/                              Place privately obtained competition CSVs here
+  DATA_RECOMPUTATION.md            Reference-snapshot preprocessing results
+data/
+  train.csv                        Fixed public reference copy (9,021 rows)
+  test.csv                         Example inference input (10 rows)
+  README.md                        Source, fields and usage
+  PROVENANCE.json                  Source commits, hashes and file metadata
+  RECOMPUTED_FEATURES.txt           61 columns from the new preprocessing run
 artifacts/                         Generated CSVs and executed notebooks (ignored)
 requirements.in                    Direct dependency ranges
 requirements.txt                   Resolved dependencies tested with Python 3.12
@@ -57,15 +69,17 @@ python scripts/smoke_test.py
 
 The smoke test trains all three base models and the meta-learner on synthetic data, runs inference, and checks the generated CSV. It verifies execution only and does not measure competition performance.
 
-### Run with your own authorized data
+### Run the included reference data
 
-Obtain the CSVs from the [competition data page](https://www.kaggle.com/competitions/hull-tactical-market-prediction/data) under the applicable access conditions. Place them at `data/train.csv` and `data/test.csv`, ordered chronologically. No API key is required to execute the notebook once the data is available locally.
+The reference CSVs are already present at `data/train.csv` and `data/test.csv`; no data download or API key is needed for this local run. Training rows are in chronological `date_id` order.
 
 ```bash
 python scripts/run_notebook.py --train data/train.csv --test data/test.csv
 ```
 
 Outputs are `artifacts/submission.csv` and `artifacts/kaggle_submission.executed.ipynb`. You can instead open `notebooks/kaggle_submission.ipynb` in JupyterLab using the environment above. The first configuration cell accepts paths through environment variables; see [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md).
+
+For another authorized snapshot from the [competition data page](https://www.kaggle.com/competitions/hull-tactical-market-prediction/data), pass its CSV paths with `--train` and `--test`. Only the two documented reference CSVs are tracked; other local datasets and generated outputs remain ignored.
 
 ## Method and evidence
 
@@ -79,4 +93,4 @@ For Kaggle, the competition-provided evaluation API is required; the local CSV i
 
 ## Credits and usage
 
-Project authors credited in the report: Luo TianCheng, Wan Qianhua, Hng Cherng Khai, Chan Kee Qing, and Chen Yike. The repository report removes their student identifiers while preserving the research content. No software license was supplied, so none has been assigned on the authors' behalf. Competition data remains subject to its source terms and is excluded from Git.
+Project authors credited in the report: Luo TianCheng, Wan Qianhua, Hng Cherng Khai, Chan Kee Qing, and Chen Yike. The repository report removes their student identifiers while preserving the research content. No software license was supplied, so none has been assigned on the authors' behalf. The included data copy retains its source attribution and is subject to the original provider's [data terms](https://www.kaggle.com/competitions/hull-tactical-market-prediction/rules); this repository does not grant a separate data license.

@@ -1,6 +1,6 @@
 # Validation record
 
-Checked on **2026-10-12**, on macOS arm64 using **CPython 3.12.14**. The environment was resolved from `requirements.in`, installed into an isolated temporary virtual environment, and recorded in `requirements.txt`.
+Initial packaging checked on **2026-10-12**, on macOS arm64 using **CPython 3.12.14**. The environment was resolved from `requirements.in`, installed into an isolated temporary virtual environment, and recorded in `requirements.txt`.
 
 Key versions: NumPy 2.5.4, pandas 2.3.3, scikit-learn 1.9.1, LightGBM 4.7.0, XGBoost 3.4.1, Polars 1.44.2, nbformat 5.11.1, nbclient 0.11.0, ipykernel 7.4.0 and JupyterLab 4.6.4. These are packaging-time versions, not the unknown historical submission environment.
 
@@ -39,3 +39,9 @@ Notebook execution also needed permission for the Jupyter kernel's temporary loc
 - Synthetic execution cannot establish predictive quality or repair the temporal leakage described in `KNOWN_LIMITATIONS.md`.
 - Credential scanning uses common patterns and manual inspection; it is not an exhaustive secret-detection guarantee. PDF text and image content were reviewed separately.
 - Other operating systems and Python versions were not tested.
+
+## Later reference-data checks
+
+The owner-requested reference CSV addition was checked separately from the initial synthetic run. The two exact source files are an explicit exception to the generic dataset and 10 MiB exclusions: training is 12,365,421 bytes, and test is 16,751 bytes. Their hashes, dimensions, ordered date IDs, finite training target and feature-list consistency are checked against `data/PROVENANCE.json` by the repository validator. The separately recorded preprocessing results are in `docs/DATA_RECOMPUTATION.md`. They do not establish the historical leaderboard result.
+
+The working notebook was subsequently executed end-to-end with the included 9,021-row training CSV and 10-row example test CSV. All three prediction models and the stacking model trained, inference completed, and the generated CSV passed row-count, unique-ID, finite-weight and [0, 2] bound checks. The executed notebook and generated predictions remain under ignored `artifacts/`. This is a new local reference-snapshot run; the Kaggle gateway and historical leaderboard score were not reproduced. The exact command and check summary are recorded in `data/PROVENANCE.json`.
