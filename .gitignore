@@ -1,0 +1,40 @@
+# Environments, caches, editor and macOS metadata
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.jupyter/
+.vscode/
+.idea/
+.DS_Store
+._*
+__MACOSX/
+
+# Credentials and private configuration
+.env
+.env.*
+!.env.example
+*credentials*.json
+kaggle.json
+*.pem
+*.key
+
+# Competition data and generated output; retain folder documentation
+data/*
+!data/README.md
+artifacts/*
+!artifacts/README.md
+submission.csv
+*.csv
+*.parquet
+*.pkl
+*.pickle
+*.joblib
+*.npy
+*.npz
+*.log
+*.zip
+*.tar.gz
+*.executed.ipynb
