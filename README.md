@@ -6,6 +6,10 @@ This repository packages the original submission with a portable working noteboo
 
 ![Historical Kaggle score](docs/assets/public_score.png)
 
+## My contribution
+
+In this team course project, I was responsible for the XGBoost and LightGBM modeling components.
+
 ## Repository layout
 
 ```text
